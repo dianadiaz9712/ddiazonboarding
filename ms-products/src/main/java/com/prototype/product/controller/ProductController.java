@@ -6,9 +6,8 @@ import java.util.UUID;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import org.springframework.http.HttpStatus;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,7 +26,7 @@ import com.prototype.product.dto.ProductResponseDTO;
 import com.prototype.product.dto.ProductResquestDTO;
 import com.prototype.product.dto.mappers.ProductMapperDTO;
 import com.prototype.product.service.ProductService;
-import com.prototype.product.service.entities.ProductEntities;
+import com.prototype.product.service.entities.ProductEntity;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -39,14 +38,14 @@ import io.swagger.annotations.ApiResponses;
 @Validated
 public class ProductController {
 
-	@Autowired
 	private ProductService productService;
 
-	@Autowired
 	private ProductMapperDTO productMapperDTO;
 
-
-
+	public ProductController(ProductService productService, ProductMapperDTO productMapperDTO) {
+		this.productService = productService;
+		this.productMapperDTO = productMapperDTO;
+	}
 
 	@GetMapping("/")
 	@ApiOperation(value = "Operación para consultar los datos de un producto", httpMethod = "GET", response = ProductResponseDTO.class, responseContainer = "List")
@@ -77,8 +76,8 @@ public class ProductController {
 			@ApiResponse(code = 500, message = "Se produjo una excepción del lado del servidor") })
 	@ResponseStatus(HttpStatus.CREATED)
 	public MessageResponse createProduct(@Valid @RequestBody ProductResquestDTO productResquest) {
-		final ProductEntities productEntities = productMapperDTO.productDtoToProductEntity(productResquest);
-		return productService.createProduct(productEntities);
+		final ProductEntity productEntity = productMapperDTO.productDtoToProductEntity(productResquest);
+		return productService.createProduct(productEntity);
 
 	}
 
@@ -89,8 +88,8 @@ public class ProductController {
 			@ApiResponse(code = 404, message = "No existe productos disponibles"),
 			@ApiResponse(code = 500, message = "Se produjo una excepción del lado del servidor") })
 	public MessageResponse updateProduct(@Valid @RequestBody ProductRequestUpdateDTO productResquestUpdate) {
-		final ProductEntities productEntities = productMapperDTO.productUpdateDtoToProductEntity(productResquestUpdate);
-		return productService.updateProduct(productEntities);
+		final ProductEntity productEntity = productMapperDTO.productUpdateDtoToProductEntity(productResquestUpdate);
+		return productService.updateProduct(productEntity);
 
 	}
 

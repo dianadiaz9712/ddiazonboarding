@@ -6,7 +6,7 @@ import lombok.Data;
 
 
 @Data
-public class ProductEntities {
+public class ProductEntity {
 
     private UUID idProduct;
 	

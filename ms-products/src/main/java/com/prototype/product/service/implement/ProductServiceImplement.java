@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.prototype.product.service.entities.ProductEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,6 @@ import com.prototype.product.model.ProductModel;
 import com.prototype.product.repository.ProductRepository;
 import com.prototype.product.repository.mappers.ProductMapper;
 import com.prototype.product.service.ProductService;
-import com.prototype.product.service.entities.ProductEntities;
 
 /**
  * @author dianadiazmartinez
@@ -24,7 +24,7 @@ import com.prototype.product.service.entities.ProductEntities;
  */
 
 @Service
-public class ProductImplement implements ProductService {
+public class ProductServiceImplement implements ProductService {
 
 	@Autowired
 	private ProductRepository productRepository;
@@ -32,24 +32,19 @@ public class ProductImplement implements ProductService {
 	@Autowired
 	private ProductMapper productMapper;
 
-	@Autowired
-	private LockImplements lockImplements;
-
 	/**
 	 *
 	 * Method for consulting available productss
 	 *
 	 */
 	@Override
-	public List<ProductEntities> getProducts() {
-		List<ProductEntities> listProductEntities = null;
+	public List<ProductEntity> getProducts() {
 		List<ProductModel> listProductModel = productRepository.findByState(ProductConstant.ACTIVO);
 		if (listProductModel.isEmpty()) {
 			throw new ProductNotFoundException(ProductMessages.DESCP0001);
 		} else {
-			listProductEntities = productMapper.productsEntitiesToModels(listProductModel);
+			return productMapper.productsEntitiesToModels(listProductModel);
 		}
-		return listProductEntities;
 	}
 
 	/*
@@ -57,15 +52,13 @@ public class ProductImplement implements ProductService {
 	 */
 
 	@Override
-	public ProductEntities getProduct(UUID idProduct) {
-		ProductEntities productEntities = null;
+	public ProductEntity getProduct(UUID idProduct) {
 		Optional<ProductModel> optProduct = productRepository.findById(idProduct);
 		if (optProduct.isPresent()) {
-			productEntities = productMapper.modelToEntity(optProduct.get());
+			return productMapper.modelToEntity(optProduct.get());
 		} else {
 			throw new ProductNotFoundException(ProductMessages.DESCP0002);
 		}
-		return productEntities;
 	}
 
 	/**
@@ -74,10 +67,10 @@ public class ProductImplement implements ProductService {
 	 *
 	 */
 	@Override
-	public MessageResponse createProduct(ProductEntities productEntities) {
+	public MessageResponse createProduct(ProductEntity productEntity) {
 		MessageResponse mes = new MessageResponse();
 
-		ProductModel productModel = productMapper.entityToModel(productEntities);
+		ProductModel productModel = productMapper.entityToModel(productEntity);
 
 		Optional<ProductModel> optProductModel = productRepository
 				.findByNameProductAndState(productModel.getNameProduct(), ProductConstant.ACTIVO);
@@ -100,15 +93,12 @@ public class ProductImplement implements ProductService {
 	 *
 	 */
 	@Override
-	public MessageResponse updateProduct(ProductEntities productEntities) {
+	public MessageResponse updateProduct(ProductEntity productEntity) {
 		MessageResponse mes = new MessageResponse();
-
-		try {
-			ProductModel productModel = productMapper.entityToModel(productEntities);
+			ProductModel productModel = productMapper.entityToModel(productEntity);
 			Optional<ProductModel> optProductModel = productRepository.findById(productModel.getIdProduct());
 
 			if (optProductModel.isPresent()) {
-				//lockImplements.lock(productEntities.getIdProduct().toString());
 				productRepository.save(productModel);
 				mes.setMensaje(ProductMessages.DESCP0004);
 			} else {
@@ -116,10 +106,6 @@ public class ProductImplement implements ProductService {
 			}
 
 			return mes;
-		} finally {
-			lockImplements.unlock(productEntities.getIdProduct().toString());
-		}
-
 	}
 
 	/**

@@ -25,7 +25,7 @@ public class ProductResponseDTO {
 	@ApiParam(value = "Estado del producto",name = "state", type = "String", example = "Activo")
 	private String state;
 	
-	@ApiParam(value = "Valor Unitatio",name = "unitValue", type = "float", example = "204")
+	@ApiParam(value = "Valor Unitario",name = "unitValue", type = "float", example = "204")
 	private float unitValue;
 	
 	@ApiParam(value = "Valor del iva",name = "taxValue", type = "float", example = "180")

@@ -4,17 +4,17 @@ import java.util.List;
 import java.util.UUID;
 
 import com.prototype.product.dto.MessageResponse;
-import com.prototype.product.service.entities.ProductEntities;
+import com.prototype.product.service.entities.ProductEntity;
 
 public interface ProductService {
 	
-	public List<ProductEntities> getProducts();
+	 List<ProductEntity> getProducts();
 	
-	public ProductEntities getProduct(UUID idProduct);
+	 ProductEntity getProduct(UUID idProduct);
 	
-	public MessageResponse createProduct(ProductEntities productEntities);
+	 MessageResponse createProduct(ProductEntity productEntity);
 	
-	public MessageResponse updateProduct(ProductEntities productEntitiest);
+	 MessageResponse updateProduct(ProductEntity productEntity);
 	
-	public MessageResponse deleteProduct(UUID idProduct);
+	 MessageResponse deleteProduct(UUID idProduct);
 }
