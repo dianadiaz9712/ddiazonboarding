@@ -38,9 +38,9 @@ import io.swagger.annotations.ApiResponses;
 @Validated
 public class ProductController {
 
-	private ProductService productService;
+	private final ProductService productService;
 
-	private ProductMapperDTO productMapperDTO;
+	private final ProductMapperDTO productMapperDTO;
 
 	public ProductController(ProductService productService, ProductMapperDTO productMapperDTO) {
 		this.productService = productService;
