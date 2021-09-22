@@ -1,0 +1,36 @@
+spring:
+  # JPA properties
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        format_sql: true
+        default_schema: payment
+        
+  datasource:
+    url: jdbc:postgresql://localhost:5432/prototype
+    username: ${USERNAME:postgres}
+    password: ${PASSWORD}
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: TRACE
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+server:
+  servlet:
+    context-path: /api/v1
+  port: 8081
+feign:
+  url: https://sandbox.api.payulatam.com/payments-api/4.0/service.cgi
