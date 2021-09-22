@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -13,21 +14,27 @@ import javax.validation.constraints.NotNull;
 @ApiModel
 public class TransactionDTO {
 
-    @ApiModelProperty(value = "Datos de la orden", name = "orderDTO", required = false)
+    @ApiModelProperty(value = "Datos de la orden", name = "orderDTO", required = true)
+    @Valid
     public OrderDTO orderDTO;
 
     @ApiModelProperty(value = "Los datos de la tarjeta de crédito.", name = "creditCardDTO", required = false)
+    @Valid
     public CreditCardDTO creditCardDTO;
 
-    @ApiModelProperty(value = "Indicador si se hace pago con tarjeta con token", name = "isCreditCardToken", required = true)
+    @ApiModelProperty(value = "Indicador si se hace pago con tarjeta con token", name = "cardToken", required = true)
+    @NotNull(message = "El campo cardToken no puede ser nulo")
+    @NotEmpty(message = "El campo cardToken no puede ser vacio")
     public boolean cardToken;
 
     @ApiModelProperty(value = "Los datos de la tarjeta de crédito .", name = "creditCardTokenDTO", required = false)
+    @Valid
     public CreditCardTokenDTO creditCardTokenDTO;
 
     @ApiModelProperty(value = "Datos del pagador.", name = "payerDTO", required = true)
     @NotNull(message = "El campo payerDTO no puede ser nulo")
     @NotEmpty(message = "El campo payerDTO no puede ser vacio")
+    @Valid
     public PayerDTO payerDTO;
 
     @ApiModelProperty(value = "Para autorización y captura", name = "type", dataType = "String", required = true, example = "AUTHORIZATION_AND_CAPTURE")

@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -36,9 +37,11 @@ public class OrderDTO {
     public ShippingAddressDTO shippingAddressDTO;
 
     @ApiModelProperty(value = "Datos del comprador.", name = "buyerDTO",  required = true)
+    @Valid
     public BuyerDTO buyerDTO;
 
     @ApiModelProperty(value = "Valores o montos asociados a la orden", name = "additionalValuesDTO", required = true)
+    @Valid
     public AdditionalValuesDTO additionalValuesDTO;
 
 
