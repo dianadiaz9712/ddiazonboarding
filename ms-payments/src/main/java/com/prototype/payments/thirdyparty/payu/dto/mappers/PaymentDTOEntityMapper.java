@@ -17,23 +17,24 @@ public interface PaymentDTOEntityMapper {
 	PaymentDTOEntityMapper INSTANCE = Mappers.getMapper(PaymentDTOEntityMapper.class);
 
 	@Mappings({
-			@Mapping(source = "transactionEntity.orderEntity.additionalValuesEntity.txValueEntity", target = "transaction.order.additionalValues.txValue"),
-			@Mapping(source = "transactionEntity.orderEntity.additionalValuesEntity.txTaxEntity", target = "transaction.order.additionalValues.txTax"),
-			@Mapping(source = "transactionEntity.orderEntity.additionalValuesEntity.txTaxReturnBaseEntity", target = "transaction.order.additionalValues.txTaxReturnBase"),
-			@Mapping(source = "transactionEntity.orderEntity.buyerEntity.shippingAddressEntity", target = "transaction.order.buyer.shippingAddress"),
-			@Mapping(source = "transactionEntity.orderEntity.buyerEntity", target = "transaction.order.buyer"),
-			@Mapping(source = "transactionEntity.orderEntity.additionalValuesEntity", target = "transaction.order.additionalValues"),
-			@Mapping(source = "transactionEntity.creditCardEntity", target = "transaction.creditCard"),
-			@Mapping(source = "transactionEntity.payerEntity", target = "transaction.payer"),
-			@Mapping(source = "transactionEntity.payerEntity.billingAddressEntity", target = "transaction.payer.billingAddress"),
-			@Mapping(source = "merchantEntity", target = "merchant")
+			@Mapping(source = "paymentEntity.transactionEntity.orderEntity.additionalValuesEntity.txValueEntity", target = "transaction.order.additionalValues.txValue"),
+			@Mapping(source = "paymentEntity.transactionEntity.orderEntity.additionalValuesEntity.txTaxEntity", target = "transaction.order.additionalValues.txTax"),
+			@Mapping(source = "paymentEntity.transactionEntity.orderEntity.additionalValuesEntity.txTaxReturnBaseEntity", target = "transaction.order.additionalValues.txTaxReturnBase"),
+			@Mapping(source = "paymentEntity.transactionEntity.orderEntity.buyerEntity.shippingAddressEntity", target = "transaction.order.buyer.shippingAddress"),
+			@Mapping(source = "paymentEntity.transactionEntity.orderEntity.buyerEntity", target = "transaction.order.buyer"),
+			@Mapping(source = "paymentEntity.transactionEntity.orderEntity.additionalValuesEntity", target = "transaction.order.additionalValues"),
+			@Mapping(source = "paymentEntity.transactionEntity.creditCardEntity", target = "transaction.creditCard"),
+			@Mapping(source = "paymentEntity.transactionEntity.payerEntity", target = "transaction.payer"),
+			@Mapping(source = "paymentEntity.transactionEntity.payerEntity.billingAddressEntity", target = "transaction.payer.billingAddress"),
+			@Mapping(source = "paymentEntity.merchantEntity", target = "merchant"),
+			@Mapping(source = "tokenCard", target = "transaction.creditCardTokenId")
 	})
-    Payment paymentToPaymentEntity(PaymentEntity paymentEntity);
+    Payment paymentToPaymentEntity(PaymentEntity paymentEntity, String tokenCard);
 
 	@Mappings({
 			@Mapping(source = "transactionResponse", target = "transactionResponseEntity")
 })
-	ResponseEntity paymentEntityToPayment(PaymentResponse paymentResponse);
+	ResponseEntity paymentResponseEntityToResponse(PaymentResponse paymentResponse);
 
 
 	@Mappings({

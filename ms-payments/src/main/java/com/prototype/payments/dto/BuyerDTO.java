@@ -19,27 +19,32 @@ public class BuyerDTO {
     @ApiModelProperty(value = "Nombres completos del comprador.", name = "fullName", dataType = "String", required = true, example = "Diana Diaz")
     @NotNull(message = "El campo fullName no puede ser nulo")
     @NotEmpty(message = "El campo fullName no puede ser vacio")
-    public String fullName;
+    private String fullName;
 
     @ApiModelProperty(value = "Correo electrónico del comprador.", name = "emailAddress", dataType = "String", required = true, example = "diana.diaz@payu.com")
     @NotNull(message = "El campo emailAddress no puede ser nulo")
     @NotEmpty(message = "El campo emailAddress no puede ser vacio")
     @Email(message = "El formato del correo es incorrecto")
-    public String emailAddress;
+    private String emailAddress;
 
     @ApiModelProperty(value = "Teléfono de contacto del comprador", name = "contactPhone", dataType = "String", required = true , example = "3222419192")
     @NotNull(message = "El campo contactPhone no puede ser nulo")
     @NotEmpty(message = "El campo contactPhone no puede ser vacio")
-    public String contactPhone;
+    private String contactPhone;
 
     @ApiModelProperty(value = "Número de identificación del comprador.", name = "dniNumber", dataType = "String", required = true, example = "12338549756")
     @NotNull(message = "El campo dniNumber no puede ser nulo")
     @NotEmpty(message = "El campo dniNumber no puede ser vacio")
-    public String dniNumber;
+    private String dniNumber;
+
+    @ApiModelProperty(value = "Tipo de documento del comprador.", name = "dniNumber", dataType = "String", required = true, example = "CC")
+    @NotNull(message = "El campo dniType no puede ser nulo")
+    @NotEmpty(message = "El campo dniType no puede ser vacio")
+    private String dniType;
 
     @ApiModelProperty(value = "Dirección de envío del comprador.", name = "shippingAddressDTO", required = true)
     @Valid
-    public ShippingAddressDTO shippingAddressDTO;
+    private ShippingAddressDTO shippingAddressDTO;
 
     @ApiModelProperty(value = "Indentificador del cliente.", name = "idCustomer", required = true)
     @NotNull(message = "El campo idCustomer no puede ser nulo")

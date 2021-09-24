@@ -13,10 +13,10 @@ import lombok.Setter;
 public class PaymentRequestDTO {
 
     @ApiModelProperty(value = "Datos de la transaccion", name = "transactionDTO")
-    public TransactionDTO transactionDTO;
+    private TransactionDTO transactionDTO;
 
     @ApiModelProperty(value = "Indicador si es una petición de prueba", name = "test", dataType = "boolean", required = true, example = "true")
     @NotNull(message = "El campo test no puede ser nulo")
-    public boolean test;
+    private boolean test;
 
 }

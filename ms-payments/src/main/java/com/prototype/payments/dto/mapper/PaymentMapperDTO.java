@@ -49,7 +49,6 @@ public interface PaymentMapperDTO {
 
 
 	@Mappings({
-			@Mapping(target = "transactionRefundEntity.type", source = "transactionRefundDTO.type"),
 			@Mapping(target = "transactionRefundEntity.parentTransactionId", source = "transactionRefundDTO.parentTransactionId"),
 			@Mapping(target = "transactionRefundEntity.reason", source = "transactionRefundDTO.reason"),
 			@Mapping(target = "transactionRefundEntity.orderRefundEntity", source = "transactionRefundDTO.orderRefundDTO"),

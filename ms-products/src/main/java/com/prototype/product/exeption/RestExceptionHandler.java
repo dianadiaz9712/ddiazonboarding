@@ -42,8 +42,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
 	}
 
-	@ExceptionHandler(ProductConflicException.class)
-	protected ResponseEntity<Object> handleProductConflic(ProductConflicException ex) {
+	@ExceptionHandler(ProductConflictException.class)
+	protected ResponseEntity<Object> handleProductConflic(ProductConflictException ex) {
 		ApiError apiError = new ApiError(HttpStatus.CONFLICT);
 		apiError.setMessage(ex.getMessage());
 		return buildResponseEntity(apiError);

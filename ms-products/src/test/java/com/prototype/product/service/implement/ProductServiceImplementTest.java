@@ -2,7 +2,7 @@ package com.prototype.product.service.implement;
 
 import com.prototype.product.constant.ProductConstant;
 import com.prototype.product.dto.MessageResponse;
-import com.prototype.product.exeption.ProductConflicException;
+import com.prototype.product.exeption.ProductConflictException;
 import com.prototype.product.exeption.ProductNotFoundException;
 import com.prototype.product.model.MockObjects;
 import com.prototype.product.model.ProductModel;
@@ -114,7 +114,7 @@ public class ProductServiceImplementTest {
 
     }
 
-    @Test(expected = ProductConflicException.class)
+    @Test(expected = ProductConflictException.class)
     public void createProductError(){
         //Arrange
         ProductModel productModel = mockObjects.createProductModel();

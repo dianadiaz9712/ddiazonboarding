@@ -13,9 +13,9 @@ import javax.validation.constraints.NotNull;
 public class TxTaxReturnBaseDTO {
     @ApiModelProperty(value = "El código ISO de la moneda asociada al monto", name = "value", dataType = "int", required = true, example = "16806")
     @NotNull(message = "El campo value no puede ser nulo")
-    public int value;
+    private int value;
 
     @ApiModelProperty(value = "El código ISO de la moneda asociada al monto", name = "currency", dataType = "String", required = true , example = "COP")
     @NotNull(message = "El campo currency no puede ser nulo")
-    public String currency;
+    private String currency;
 }

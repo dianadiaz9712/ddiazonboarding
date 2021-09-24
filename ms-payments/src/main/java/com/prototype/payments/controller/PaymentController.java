@@ -2,6 +2,7 @@ package com.prototype.payments.controller;
 
 import javax.validation.Valid;
 
+import com.prototype.payments.exception.PaymentServerErrorException;
 import com.prototype.payments.service.RefundService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -44,7 +45,7 @@ public class PaymentController {
                 @ApiResponse(code = 400, message = "Se produjo una excepción en la creacion de pago"),
                 @ApiResponse(code = 500, message = "Se produjo una excepción del lado del servidor") })
         @ResponseStatus(HttpStatus.CREATED)
-        public ResponseDTO createPayment(@Valid @RequestBody PaymentRequestDTO paymentRequestDTO) {
+        public ResponseDTO createPayment(@Valid @RequestBody PaymentRequestDTO paymentRequestDTO) throws PaymentServerErrorException {
         PaymentEntity paymentEntity =paymentMapperDTO.paymentDtoToPaymentEntity(paymentRequestDTO);
         return paymentMapperDTO.responseEntityToResponseDTO(paymentService.createPayment(paymentEntity));
         }

@@ -15,10 +15,10 @@ public class TxValueDTO {
     @ApiModelProperty(value = "El código ISO de la moneda asociada al monto", name = "value", dataType = "int", required = true, example = "20000")
     @NotNull(message = "El campo value no puede ser nulo")
     @NotEmpty(message = "El campo value no puede ser vacio")
-    public int value;
+    private int value;
 
     @ApiModelProperty(value = "El código ISO de la moneda asociada al monto", name = "currency", dataType = "String", required = true , example = "COP")
     @NotNull(message = "El campo currency no puede ser nulo")
     @NotEmpty(message = "El campo currency no puede ser vacio")
-    public String currency;
+    private String currency;
 }

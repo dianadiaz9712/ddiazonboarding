@@ -10,7 +10,7 @@ public class TransactionEntity {
     private OrderEntity orderEntity;
 
     private CreditCardEntity creditCardEntity;
-    public boolean cardToken;
+    private boolean cardToken;
     private CreditCardTokenEntity creditCardTokenEntity;
     private PayerEntity payerEntity;
     private String type;

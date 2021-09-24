@@ -20,6 +20,6 @@ public class RefundDTO {
 
     @ApiModelProperty(value = "Indicador si es una petición de prueba", name = "test", dataType = "boolean", required = true, example = "true")
     @NotNull(message = "El campo test no puede ser nulo")
-    public boolean test;
+    private boolean test;
 
 }

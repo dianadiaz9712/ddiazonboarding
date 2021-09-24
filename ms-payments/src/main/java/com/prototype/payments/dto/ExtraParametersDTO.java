@@ -9,5 +9,5 @@ import lombok.Setter;
 @ApiModel
 public class ExtraParametersDTO {
 
-    public int installments_number;
+    private int installments_number;
 }

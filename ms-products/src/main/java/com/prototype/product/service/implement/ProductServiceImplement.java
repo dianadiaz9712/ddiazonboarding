@@ -12,7 +12,7 @@ import com.prototype.product.constant.ProductConstant;
 import com.prototype.product.constant.ProductMessages;
 import com.prototype.product.dto.MessageResponse;
 import com.prototype.product.exeption.ProductNotFoundException;
-import com.prototype.product.exeption.ProductConflicException;
+import com.prototype.product.exeption.ProductConflictException;
 import com.prototype.product.model.ProductModel;
 import com.prototype.product.repository.ProductRepository;
 import com.prototype.product.repository.mappers.ProductMapper;
@@ -27,10 +27,10 @@ import com.prototype.product.service.ProductService;
 public class ProductServiceImplement implements ProductService {
 
 	@Autowired
-	private ProductRepository productRepository;
+	ProductRepository productRepository;
 
 	@Autowired
-	private ProductMapper productMapper;
+	ProductMapper productMapper;
 
 	/**
 	 *
@@ -76,7 +76,7 @@ public class ProductServiceImplement implements ProductService {
 				.findByNameProductAndState(productModel.getNameProduct(), ProductConstant.ACTIVO);
 
 		if (optProductModel.isPresent()) {
-			throw new ProductConflicException(ProductMessages.DESCP0008);
+			throw new ProductConflictException(ProductMessages.DESCP0008);
 		} else {
 			productModel.setState(ProductConstant.ACTIVO);
 			productRepository.save(productModel);
